@@ -29,28 +29,33 @@ Then(/^I click on the Continue button$/) do
         find(:css, 'a.qa-Coupon.grid > div.grid__cell--three-quarters.media__body > h2.media__title').click
         find(:css, 'a.findCouponButton').click
         click_link('Checkout')
-        #click_link('Continue Checkout')
-        #expect(page).to have_title('Entrees Home - Domino\'s Pizza, Order Pizza Online for Delivery - Dominos.com')
+        
 end
 
 Then(/^I check the total on my order$/) do
-  Order_total=find(:xpath,'//div[1]/div[2]/div/div/div/div[2]/div/div[2]/div/table[3]/tbody/tr[3]/td[2]')
-  #Order_total=find(:xpath,'//div[1]/div[2]/div/div/div/div[2]/div/div[2]/div/table[3]/tbody/tr[4]/td[2]').value
+  
+  Order_total=find(:xpath, '/html/body/div[3]/div[2]/div/div/div/div[2]/div/div[2]/div/table[3]/tbody/tr[4]/td[2]').native.text
   print Order_total
+  expect(Order_total).to eq('$15.21')
 end
 
 Then(/^I add a coupon code$/) do
-  find(:css,'a.navigation-coupons').click
- find(:xpath,"//div[@id='js-pageSplit']/section/div/div[4]/div[2]/div/a").Click
+  find(:xpath,'/html/body/header/nav/div[2]/ul/li[6]/a').click
+  find(:xpath,'/html/body/div[3]/div[1]/div/section/div/div[6]/div[2]/div/a').click
+ find(:xpath,'/html/body/div[20]/div/div[4]/div[2]/div[2]/div/div[2]/p/a').click
+ find(:xpath,'/html/body/div[20]/div/div[4]/div[2]/div/div/div[2]/p/a').click
+find(:xpath,'/html/body/div[20]/div/div[2]/div[3]/div[2]/form/div[3]/button').click
+find(:xpath,'/html/body/div[20]/div/a').click
  click_link('Checkout')
         end
 
 Then(/^I add extras$/) do
-  find(:xpath,'//div[1]/div[2]/div/div/div/div[2]/section/div/div[3]/a').Click
+  find(:xpath,'/html/body/div[3]/div[2]/div/div/div/div[2]/section/div/div[2]/a').click
+  find(:xpath,'/html/body/div[20]/div/div[2]/div/div[2]/form/div[3]/button').click
 end
 
 Then(/^i check my total again$/) do
-  new_total=find(:xpath,'//div[1]/div[2]/div/div/div/div[2]/div/div[2]/div/table[4]/tbody/tr[4]/td[2]').native.text
-  expect(page).to.have('new_total')
+  new_total=find(:xpath,'/html/body/div[3]/div[2]/div/div/div/div[2]/div/div[2]/div/table[6]/tbody/tr[5]/td[2]').native.text
+  expect(new_total).to eq('$27.91')
 end
         
