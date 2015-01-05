@@ -8,7 +8,7 @@ Then(/^I click on the order online link$/) do
 end
 
 Then(/^I fill the details$/)do
-   sleep 10
+   
 			  find('.Delivery').click
        
             select('Business', :from => 'Address_Type_Select')
@@ -20,7 +20,7 @@ Then(/^I fill the details$/)do
 
 Then(/^I click on the Continue button$/) do
   find_button('Continue').click
-        sleep 5
+        
         click_link('Popular Items')
         click_link('Large (14") Hand Tossed Pizza')
         #find(:css,'#Future_Time').click
