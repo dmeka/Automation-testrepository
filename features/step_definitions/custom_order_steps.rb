@@ -22,22 +22,17 @@ Then(/^I fill the necessary details$/)do
       end
 
       Then(/^I click on Build your own pizza link$/) do
-        
-        
-        find(:xpath,"//div[@data-storeid='4348']//a[@data-type='Carryout']").click
-        #find(:xpath,'/html/body/header/nav/div[3]/div[2]/ul/li[2]/a').click
-        find(:css,'a.qa-BYO').click
+      find(:xpath,"//div[@data-storeid='4348']//a[@data-type='Carryout']").click
+      find(:css,'a.qa-BYO').click
        
-       #find (:xpath,'//div[@id='pizzaSummaryInColumn']//button[@type='submit’].click
+       
 end
 Then(/^I place a custom order$/) do
 find(:css,'a.js-next:nth-child(2)').click
 find(:css,'div.toppingSettings:nth-child(3) > div:nth-child(1) > label:nth-child(1)').click
 select('Extra', :from => 'Weight|X')
 find(:css,'a.js-next:nth-child(2)').click
-#click_link('No Thanks')
 find(:css,'button.js-closePizzaMessage:nth-child(2)').click
-sleep 10
 find(:css,'#toppingsWrapper > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > label:nth-child(1) > input:nth-child(1)').click
 check('Premium Chicken')
 check('Jalapeno Peppers')
@@ -48,8 +43,7 @@ find(:css,'a.card--overlay__close').click
 end
 
 Then(/^I add few coupon codes$/) do
-  #find(:xpath,'/html/body/header/nav/div[2]/ul/li[6]/a').click
-  find(:xpath,"//a[@class='navigation-coupons']").click
+ find(:xpath,"//a[@class='navigation-coupons']").click
   # Adding 2 medium 2 topping handmade pizza coupon $8.99 
   find(:xpath,"//a[@href='#/order/coupons/new?code=9204&qty=1']").click  
   #Adding build your own pizza after adding the coupon
