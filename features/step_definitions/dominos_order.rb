@@ -10,8 +10,7 @@ end
 Then(/^I fill the details$/)do
    
 			  find('.Delivery').click
-       
-            select('Business', :from => 'Address_Type_Select')
+       select('Business', :from => 'Address_Type_Select')
  		    fill_in('Street', :with => '7950 jones branch dr')
   			fill_in('City', :with => 'Mc Lean')
   			select('VA', :from => 'Region')
@@ -34,28 +33,35 @@ end
 
 Then(/^I check the total on my order$/) do
   
-  Order_total=find(:xpath, '/html/body/div[3]/div[2]/div/div/div/div[2]/div/div[2]/div/table[3]/tbody/tr[4]/td[2]').native.text
+  #Order_total=find(:xpath, '/html/body/div[3]/div[2]/div/div/div/div[2]/div/div[2]/div/table[3]/tbody/tr[4]/td[2]').native.text
+  #Order_total=find(:xpath, "//table[@class='order-summary__totals']/tbody/tr[4]/td[2]").native.text
+  Order_total=find(:xpath, "//td[@class='finalizedTotal js-total']").native.text
+  
   print Order_total
   expect(Order_total).to eq('$15.21')
 end
 
 Then(/^I add a coupon code$/) do
-  find(:xpath,'/html/body/header/nav/div[2]/ul/li[6]/a').click
-  find(:xpath,'/html/body/div[3]/div[1]/div/section/div/div[6]/div[2]/div/a').click
- find(:xpath,'/html/body/div[20]/div/div[4]/div[2]/div[2]/div/div[2]/p/a').click
- find(:xpath,'/html/body/div[20]/div/div[4]/div[2]/div/div/div[2]/p/a').click
-find(:xpath,'/html/body/div[20]/div/div[2]/div[3]/div[2]/form/div[3]/button').click
-find(:xpath,'/html/body/div[20]/div/a').click
+  find(:xpath,"//a[@class='navigation-coupons']").click
+  find(:xpath,"//a[@href='#/order/coupons/new?code=8118&qty=1']").click
+ 
+ find(:xpath,"//a[@href='#/order/variant/new?code=2LCOKE&qty=1']").click
+find(:xpath,"//a[@href='#/product/F_PBITES/builder/?couponCode=8118&code=B16PBIT']").click
+find(:xpath,"//div[@class='form__control-group--actions--alignright']/button[@class='btn js-isNew']").click
+#find(:xpath,'/html/body/div[20]/div/a').click--This is to click on the Add to order link
  click_link('Checkout')
         end
 
 Then(/^I add extras$/) do
-  find(:xpath,'/html/body/div[3]/div[2]/div/div/div/div[2]/section/div/div[2]/a').click
-  find(:xpath,'/html/body/div[20]/div/div[2]/div/div[2]/form/div[3]/button').click
+  #click_link("href=#/product/S_BONEIN/builder/?code=W08PHOTW&sides=Bd:1", match: :first)
+  click_link('8-piece Hot Wings', match: :first)
+  
+  #find(:xpath,"//a[@href='#/product/S_BONEIN/builder/?code=W08PHOTW&sides=Bd:1']").click
+ find(:xpath,"//div[@class='form__control-group--actions--alignright']/button[@class='btn btn--large js-isNew']").click
 end
 
 Then(/^i check my total again$/) do
-  new_total=find(:xpath,'/html/body/div[3]/div[2]/div/div/div/div[2]/div/div[2]/div/table[6]/tbody/tr[5]/td[2]').native.text
+  new_total=find(:xpath, "//td[@class='finalizedTotal js-total']").native.text
   expect(new_total).to eq('$27.91')
 end
         

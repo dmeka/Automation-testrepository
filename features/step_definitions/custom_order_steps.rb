@@ -7,7 +7,6 @@ Then(/^I click on ordering online link$/) do
 end
 
 Then(/^I choose the carryout option$/) do
-  sleep 10
   find('.Carryout').click
 
 end
@@ -23,27 +22,33 @@ Then(/^I fill the necessary details$/)do
       end
 
       Then(/^I click on Build your own pizza link$/) do
-        sleep 5
+        
         
         find(:xpath,"//div[@data-storeid='4348']//a[@data-type='Carryout']").click
-        find(:xpath,'/html/body/header/nav/div[3]/div[2]/ul/li[2]/a').click
-        sleep 5
+        #find(:xpath,'/html/body/header/nav/div[3]/div[2]/ul/li[2]/a').click
+        find(:css,'a.qa-BYO').click
+       
        #find (:xpath,'//div[@id='pizzaSummaryInColumn']//button[@type='submit’].click
 end
 Then(/^I place a custom order$/) do
 find(:css,'a.js-next:nth-child(2)').click
 find(:css,'div.toppingSettings:nth-child(3) > div:nth-child(1) > label:nth-child(1)').click
+sleep 10
 select('Extra', :from => 'Weight|X')
-#click_link('No Thanks')
+sleep 10
+
 find(:css,'a.js-next:nth-child(2)').click
+#click_link('No Thanks')
+find(:css,'button.js-closePizzaMessage:nth-child(2)').click
+sleep 10
 find(:css,'#toppingsWrapper > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > div:nth-child(2) > label:nth-child(1) > input:nth-child(1)').click
 check('Premium Chicken')
 check('Jalapeno Peppers')
 check('Pineapple')
-find_button('Save Changes').click
-#find(:xpath,'/html/body/div[20]/div/div[2]/form/div[3]/div[3]/div/div[7]/div[2]/div/div[2]/div[2]/label').click
-#find(:xpath,'/html/body/div[22]/div/div[2]/form/div[3]/div[3]/div/div[7]/div[3]/div/div[2]/div[1]/label').click
-find(:xpath,'/html/body/div[19]/div/div[2]/form/div[4]/div[2]/div[2]').click
+#find(:css,'button.btn—block').click
+find_button('Add to Order').click
+find(:css,'a.card--overlay__close').click
+#find(:xpath,'/html/body/div[21]/div/div[2]/form/div[4]/div[2]/div[2]').click
 end
 
 Then(/^I add few coupon codes$/) do
