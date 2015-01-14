@@ -1,12 +1,1 @@
-@customorder
-	Feature: Placing an online order
-	Scenario: Ordering pizza on the dominos website
-
-	When I navigate to Dominos Home page
-	Then I click on ordering online link
-	Then I choose the carryout option
-	Then I fill the necessary details
-	Then I click on Build your own pizza link
-	Then I place a custom order
-	Then I add few coupon codes
-	Then I check my order total
+Feature: Placing an online order@customorderScenario Outline: Data driven for scenario outline    When I navigate to Dominos Home page    Then I click on ordering online link    Then I choose the carryout option    And I select "<address_type>" from address type drop-down    And I enter "<street_address>" in the street address input field    And I enter "<city>" in the city input field    And I select "<state>" from state drop-down    And I enter "<zip_code>" in the zip code input field    Then I choose a <store_id_> to carryout    Then I click on Build your own pizza link    Then I create a custom pizza	  Then I add few coupon codes	  Then I check my order totalExamples:   | address_type  | street_address        |  city        | state | zip_code | store_id |   | Business      | 7950 Jones Branch Dr  |  McLean      | VA    | 22102  | 4348 |   | Other         | 1941 Roland clarke pl   |  Reston  | VA    | 20191   | 4394 |
